@@ -1,0 +1,3 @@
+C:/Users/aleji/Desktop/Documentos Tec/Semestre 2 2021/Lenguajes, Compiladores e Interpretes/Tarea 3/Tarea-3-Paceman/Server/cmake-build-debug/CMakeFiles/Server.dir
+C:/Users/aleji/Desktop/Documentos Tec/Semestre 2 2021/Lenguajes, Compiladores e Interpretes/Tarea 3/Tarea-3-Paceman/Server/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/aleji/Desktop/Documentos Tec/Semestre 2 2021/Lenguajes, Compiladores e Interpretes/Tarea 3/Tarea-3-Paceman/Server/cmake-build-debug/CMakeFiles/rebuild_cache.dir

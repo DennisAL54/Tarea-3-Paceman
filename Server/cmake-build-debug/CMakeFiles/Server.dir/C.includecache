@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/aleji/Desktop/Documentos Tec/Semestre 2 2021/Lenguajes, Compiladores e Interpretes/Tarea 3/Tarea-3-Paceman/Server/main.c
+stdio.h
+-
+
