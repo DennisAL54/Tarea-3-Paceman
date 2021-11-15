@@ -7,14 +7,10 @@
 #IncludeRegexTransform: 
 
 C:/Users/aleji/Desktop/Documentos Tec/Semestre 2 2021/Lenguajes, Compiladores e Interpretes/Tarea 3/Tarea-3-Paceman/Server/main.c
+io.h
+-
 stdio.h
 -
 winsock2.h
--
-windows.h
--
-ws2tcpip.h
--
-iphlpapi.h
 -
 
