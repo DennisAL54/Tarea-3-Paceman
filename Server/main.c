@@ -13,7 +13,7 @@ int main(int argc , char *argv[])
     SOCKET s , new_socket;
     struct sockaddr_in server , client;
     int c;
-    char *message;
+    char *message, reply[2000];
 
     printf("\nInitialising Winsock...");
     if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
@@ -56,11 +56,11 @@ int main(int argc , char *argv[])
 
     while( (new_socket = accept(s , (struct sockaddr *)&client, &c)) != INVALID_SOCKET )
     {
+        recv(new_socket , reply , 2000 , 0);
+        puts(reply);
         puts("Connection accepted");
-
         //Reply to the client
-        message = "Hello Client , I have received your connection. But I have to go now, bye\n";
-        send(new_socket , message , strlen(message) , 0);
+        //message = "Hello Client , I have received your connection. But I have to go now, bye\n";
     }
 
     if (new_socket == INVALID_SOCKET)

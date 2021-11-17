@@ -17,7 +17,7 @@ public class Connection {
     {
         if(tipo.equalsIgnoreCase("servidor"))
         {
-            ss = new ServerSocket(PUERTO);//Se crea el socket para el servidor en puerto 1234
+            ss = new ServerSocket(PUERTO);//Se crea el socket para el servidor en puerto 8888
             cs = new Socket(); //Socket para el cliente
         }
         else
