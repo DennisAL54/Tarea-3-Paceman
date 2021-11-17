@@ -14,6 +14,7 @@ int main(int argc , char *argv[])
     struct sockaddr_in server , client;
     int c;
     char *message, reply[2000];
+    int recv_size;
 
     printf("\nInitialising Winsock...");
     if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
@@ -56,11 +57,17 @@ int main(int argc , char *argv[])
 
     while( (new_socket = accept(s , (struct sockaddr *)&client, &c)) != INVALID_SOCKET )
     {
-        recv(new_socket , reply , 2000 , 0);
+        if((recv_size = recv(s , reply , 2000 , 0)) == SOCKET_ERROR)
+        {
+            puts("recv failed");
+        }
+
+        puts("Reply received\n");
+
+        //Add a NULL terminating character to make it a proper string before printing
+        reply[recv_size] = '\0';
         puts(reply);
         puts("Connection accepted");
-        //Reply to the client
-        //message = "Hello Client , I have received your connection. But I have to go now, bye\n";
     }
 
     if (new_socket == INVALID_SOCKET)
