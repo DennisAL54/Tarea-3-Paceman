@@ -5,16 +5,16 @@
 #include<io.h>
 #include<stdio.h>
 #include<winsock2.h>
-#define PORT 1000
 
 #pragma comment(lib,"ws2_32.lib") //Winsock Library
 
 int main(int argc , char *argv[])
 {
     WSADATA wsa;
-    SOCKET s , new_socket;
+    int c,n;
     struct sockaddr_in server , client;
-    int c;
+    SOCKET s , new_socket;
+    char buffer[256];
 
     printf("\nInitialising Winsock...");
 
@@ -37,7 +37,7 @@ int main(int argc , char *argv[])
     //Prepare the sockaddr_in structure
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    server.sin_port = htons(PORT);
+    server.sin_port = htons(27015);
 
     //Bind
     if( bind(s ,(struct sockaddr *)&server , sizeof(server)) == SOCKET_ERROR)
@@ -61,38 +61,29 @@ int main(int argc , char *argv[])
         printf("accept failed with error code : %d" , WSAGetLastError());
         return 1;
     }
-    int size = 1024;
-    char buff[size];
-    char sbuff[size];
-    int n;
-    int reader;
-    memset(buff, 0, size);
-    memset(sbuff, 0, size);
-    for(;;){
-        reader = recv(c, buff, 1024 * sizeof(char), 0);
-        if (reader == -1) {
-            perror("recv()");
-            break;
-        } else if (reader == 0) {
-            break;
-        } else {
-            // print buffer which contains the client contents
-            printf("From client: %s\t To client : ", buff);
-            // if msg contains "Exit" then server exit and chat ended.
-            if (strncmp("exit", buff, 4) == 0) {
-                printf("Server Exit...\n");
-                break;
-            }
-            bzero(buff, size);
-            n = 0;
-            // copy server message in the buffer
-            while ((sbuff[n++] = getchar()) != '\n');
-
-// and send that buffer to client
-            write(c, sbuff, sizeof(sbuff));
-            bzero(sbuff,size);
-
+    else{
+        puts("Connection accepted");
+        bzero(buffer,256);
+        fgets(buffer, strlen(buffer),stdin);
+        n = recv(new_socket,buffer, 255,0);
+        if (n < 0)
+        {
+            perror("ERROR reading from socket");
+            exit(1);
         }
+        buffer[n] = '\0';
+        puts(buffer);
+
+        printf("Enter a message for the client: ");
+
+        bzero(buffer,256);
+        fgets(buffer,strlen(buffer),stdin);
+        n = send(new_socket,buffer,strlen(buffer),0);
+        if (n < 0)
+        {
+            perror("ERROR writing to socket");
+        }
+
 
     }
 

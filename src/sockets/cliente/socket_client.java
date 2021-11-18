@@ -1,8 +1,8 @@
 
 package sockets.cliente;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
+
 import sockets.connection.Connection;
 
 public class socket_client extends Connection
@@ -15,10 +15,12 @@ public class socket_client extends Connection
         try
         {
             //Flujo de datos hacia el servidor
-            salidaServidor = new DataOutputStream(cs.getOutputStream());
-            //Se escribe en el servidor usando su flujo de datos
-            salidaServidor.writeUTF("This is a message");
-            salidaServidor.flush();
+            salidaServidor = new PrintStream(cs.getOutputStream(), true);
+            salidaServidor.println("Este mensaje viene de java");
+            //Flujo de datos desde el servidor
+
+            entradaServidor = new BufferedReader(new InputStreamReader(cs.getInputStream()));
+            entradaServidor.readLine();
 
             cs.close();//Fin de la conexión
 
