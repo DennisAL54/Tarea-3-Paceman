@@ -7,7 +7,7 @@ import sockets.connection.Connection;
 
 public class socket_client extends Connection
 {
-    public socket_client() throws IOException{
+    public socket_client() throws IOException{//Constructor
         super("Cliente");
     }
     public void startClient() //Método para iniciar el cliente
@@ -15,14 +15,13 @@ public class socket_client extends Connection
         try
         {
             //Flujo de datos hacia el servidor
-            salidaServidor = new PrintStream(cs.getOutputStream(), true);
-            salidaServidor.println("Este mensaje viene de java");
+            salidaServidor = new PrintStream(cs.getOutputStream(), true);//Se crea un nuevo PrintStream para enviar datos
+            salidaServidor.println("Este mensaje viene de java"); //Se envia el mensaje al servidor
             //Flujo de datos desde el servidor
+            entradaServidor = new BufferedReader(new InputStreamReader(cs.getInputStream()));//Se crea un nuevo BufferedReader para escuchar mensajes del servidor
+            System.out.println(entradaServidor.readLine());//Se imprime el mensaje que se recibe del servidor
 
-            entradaServidor = new BufferedReader(new InputStreamReader(cs.getInputStream()));
-            System.out.println(entradaServidor.readLine());
-
-            cs.close();//Fin de la conexión
+            cs.close();//Se cierra el socket
 
         }
         catch (Exception e)
