@@ -1,6 +1,4 @@
-/*
-	Live Server on port 8888
-*/
+
 #define bzero(b,len) (memset((b), '\0', (len)), (void) 0)
 #include<io.h>
 #include<stdio.h>
