@@ -20,7 +20,7 @@ public class socket_client extends Connection
             //Flujo de datos desde el servidor
 
             entradaServidor = new BufferedReader(new InputStreamReader(cs.getInputStream()));
-            entradaServidor.readLine();
+            System.out.println(entradaServidor.readLine());
 
             cs.close();//Fin de la conexión
 

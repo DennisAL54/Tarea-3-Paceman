@@ -15,6 +15,7 @@ int main(int argc , char *argv[])
     struct sockaddr_in server , client;
     SOCKET s , new_socket;
     char buffer[256];
+    char *message;
 
     printf("\nInitialising Winsock...");
 
@@ -74,15 +75,16 @@ int main(int argc , char *argv[])
         buffer[n] = '\0';
         puts(buffer);
 
-        printf("Enter a message for the client: ");
+        printf("Sending a message to client...");
 
-        bzero(buffer,256);
-        fgets(buffer,strlen(buffer),stdin);
-        n = send(new_socket,buffer,strlen(buffer),0);
+        message = "Este mensaje viene del servidor winsock\n";
+        n = send(new_socket,message,strlen(message),0);
         if (n < 0)
         {
             perror("ERROR writing to socket");
         }
+
+        puts("Message succesfully sent");
 
 
     }
